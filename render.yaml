@@ -5,6 +5,8 @@ services:
     buildCommand: npm install
     startCommand: npm start
     envVars:
+      - key: ADMIN_USERNAME
+        value: josh
       - key: NODE_ENV
         value: production
       - key: SESSION_SECRET
