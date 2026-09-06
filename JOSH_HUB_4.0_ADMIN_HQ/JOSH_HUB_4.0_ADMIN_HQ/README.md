@@ -1,35 +1,38 @@
-# JOSH HUB 4.0 — ADMIN HQ
+# JOSH HUB ONLINE 3.0
 
-JOSH HUB ONLINE with the full personal dashboard plus an expanded owner/admin control centre.
+A full-stack JOSH HUB with accounts, profiles, XP/levels, favourites, saved Nova chats, admin tools, Roblox HQ, MTB Zone and creator links.
 
-## Owner
-The username `josh` is permanently the JOSH HUB owner/admin. The owner cannot be demoted, banned, renamed, or deleted.
+## Run on Windows
 
-## Admin HQ
-- Dashboard stats: users, online users, admins, banned users, chats
-- Search members
-- Make admins / demote admins
-- Ban / unban members
-- Set member XP
-- Rename members
-- Delete member accounts
-- Post site-wide announcements
-- Admin activity/audit log
-- Owner protection for `josh`
-
-## Run locally
-```bat
+```cmd
 npm install
 npm start
 ```
+
 Open `http://localhost:3000`.
 
+## Real Nova AI
+
+The site supports an OpenAI-compatible `/v1/chat/completions` provider.
+
+For a hosted deployment, set:
+- `OPENAI_API_KEY`
+- `AI_MODEL` (default `gpt-4.1-mini`)
+
+For a local compatible server such as Ollama, set:
+- `AI_BASE_URL=http://127.0.0.1:11434/v1`
+- `AI_MODEL=llama3.2`
+
+## Admin
+
+Set `ADMIN_USERNAME` to the username that should be an admin before that account is created (or restart after setting it). Admin users get an Admin HQ section.
+
 ## Render
-Build command: `npm install`
-Start command: `npm start`
 
-Set `ADMIN_USERNAME` to `josh` if desired for compatibility with older deployment settings. The current server already hard-codes `josh` as the owner.
+The repository includes `render.yaml`. Push this folder to a Git repository and create a Render Web Service from it. Add your AI key as a secret environment variable. The included disk config stores SQLite data under `/var/data`.
 
-For production, set a strong `SESSION_SECRET`. If using Nova AI, configure `OPENAI_API_KEY` or an OpenAI-compatible `AI_BASE_URL` and `AI_MODEL`.
+Never commit `.env` or API keys.
 
-SQLite data is stored in `DATA_DIR` when that environment variable is set.
+
+## Owner account
+The JOSH HUB owner username is permanently set to `josh`. Any existing or newly-created account named `josh` is assigned the `admin` role automatically.
