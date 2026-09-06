@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: josh-hub-online
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: /var/data
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: gpt-4.1-mini
+    disk:
+      name: josh-hub-data
+      mountPath: /var/data
+      sizeGB: 1
